@@ -1,0 +1,503 @@
+# iOS Tahoe Dark — Liquid Glass Theme for Home Assistant
+# Based on: iOS Tahoe Dark  |  Glass layer: iOS 26 Liquid Glass design language
+# Font: JetBrains Mono
+#
+# INSTALLATION VIA HACS:
+# 1. Add this repository in HACS → Frontend → Custom Repositories
+#    (or find it in the HACS store once listed)
+# 2. Click Install
+# 3. In configuration.yaml, ensure you have:
+#    frontend:
+#      themes: !include_dir_merge_named themes/
+#
+# 4. Load the JetBrains Mono font by adding this to configuration.yaml:
+#    frontend:
+#      extra_module_url:
+#        - /local/jetbrains_mono.js
+#
+# 5. Create /config/www/jetbrains_mono.js with the following content:
+#    const link = document.createElement("link");
+#    link.rel = "stylesheet";
+#    link.href = "https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap";
+#    document.head.appendChild(link);
+#
+# 6. OPTIONAL — Full backdrop-blur (recommended for max glass effect):
+#    Add the following custom CSS to your dashboard YAML (raw config):
+#
+#    background: var(--primary-background-color)
+#    extra_styles: |
+#      ha-card {
+#        backdrop-filter: blur(24px) saturate(1.8) !important;
+#        -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
+#      }
+#      .header {
+#        backdrop-filter: blur(20px) saturate(1.6) !important;
+#        -webkit-backdrop-filter: blur(20px) saturate(1.6) !important;
+#      }
+#
+#    Or use the "card-mod" HACS integration to apply per-card blur:
+#      card_mod:
+#        style: |
+#          ha-card {
+#            backdrop-filter: blur(24px) saturate(1.8);
+#            -webkit-backdrop-filter: blur(24px) saturate(1.8);
+#          }
+#
+# 7. Reload themes via Developer Tools → YAML → Reload Themes
+# 8. Select "iOS Tahoe Dark Glass" in your Profile → Theme
+#
+# ─────────────────────────────────────────────────────────────
+# LIQUID GLASS DESIGN LANGUAGE (iOS 26)
+# ─────────────────────────────────────────────────────────────
+# • Ultra-transparent card surfaces (glass panes hovering over the void)
+# • Bright, thin glass-edge borders — light catching on the rim
+# • Inset specular highlight — simulates glass thickness at the top edge
+# • Deep, ambient shadows with subtle chromatic tinting
+# • Higher border radii — organic, liquid-like shapes
+# • Layered depth — different elevation levels use different glass opacity
+# • Vivid accents that glow through the translucent surface
+# ─────────────────────────────────────────────────────────────
+
+ios_tahoe_dark_glass:
+
+  # ─────────────────────────────────────────
+  # Typography — JetBrains Mono
+  # ─────────────────────────────────────────
+
+  primary-font-family: "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace"
+
+  paper-font-common-base_-_font-family: "'JetBrains Mono', 'SF Mono', monospace"
+  paper-font-common-code_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-body1_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-subhead_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-headline_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-title_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-display1_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-display2_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-display3_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-display4_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-caption_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-menu_-_font-family: "'JetBrains Mono', monospace"
+  paper-font-button_-_font-family: "'JetBrains Mono', monospace"
+
+  mdc-typography-font-family: "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace"
+  mdc-typography-body1-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-body2-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-subtitle1-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-subtitle2-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline1-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline2-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline3-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline4-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline5-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-headline6-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-caption-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-button-font-family: "'JetBrains Mono', monospace"
+  mdc-typography-overline-font-family: "'JetBrains Mono', monospace"
+
+  mdc-list-list-item-label-text-font: "'JetBrains Mono', monospace"
+  mdc-list-list-item-supporting-text-font: "'JetBrains Mono', monospace"
+  mdc-list-list-item-trailing-supporting-text-font: "'JetBrains Mono', monospace"
+
+  md-ref-typeface-brand: "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace"
+  md-ref-typeface-plain: "'JetBrains Mono', 'SF Mono', 'Fira Code', monospace"
+
+  # ─────────────────────────────────────────
+  # THE VOID — Backgrounds beneath the glass
+  # iOS 26 dark base: near-black with a
+  # cool blue-violet shift (space-like depth)
+  # ─────────────────────────────────────────
+
+  primary-background-color: "#07070c"           # Near-void: deep blue-black
+  secondary-background-color: "#0d0d14"         # Elevated void layer
+  divider-color: "rgba(255, 255, 255, 0.06)"    # Barely-there dividers
+
+  # ─────────────────────────────────────────
+  # GLASS SURFACES — Cards & panels
+  # The signature of iOS 26 Liquid Glass:
+  # surfaces are barely opaque, letting the
+  # dark void bleed through. Borders catch
+  # ambient light like real glass edges.
+  # ─────────────────────────────────────────
+
+  # Card glass surface — ultra-translucent
+  card-background-color: "rgba(255, 255, 255, 0.05)"
+  ha-card-background: "rgba(255, 255, 255, 0.05)"
+
+  # Glass edge — bright rim light (light refracting through glass)
+  ha-card-border-color: "rgba(255, 255, 255, 0.18)"
+  ha-card-border-width: "1px"
+
+  # Liquid organic shape — more rounded than standard Tahoe
+  ha-card-border-radius: "22px"
+
+  # Shadow system: outer ambient glow + inset specular highlight
+  # The inset rgba(255,255,255,0.08) simulates light hitting the top glass edge
+  ha-card-box-shadow: >-
+    0 8px 40px rgba(0, 0, 0, 0.65),
+    0 2px 12px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12)
+
+  # ─────────────────────────────────────────
+  # FROSTED ELEVATED SURFACES
+  # Dialogs, menus, select dropdowns —
+  # slightly more opaque glass (thicker pane)
+  # ─────────────────────────────────────────
+
+  paper-dialog-background-color: "rgba(22, 22, 30, 0.90)"
+  paper-listbox-background-color: "rgba(15, 15, 20, 0.85)"
+  paper-item-focused_-_background: "rgba(255, 255, 255, 0.07)"
+  paper-item-focused_-_after_-_opacity: "0"
+  mdc-menu-surface-fill-color: "rgba(22, 22, 30, 0.92)"
+  mdc-select-fill-color: "rgba(255, 255, 255, 0.06)"
+  mdc-text-field-fill-color: "rgba(255, 255, 255, 0.06)"
+
+  # ─────────────────────────────────────────
+  # MDC CORE THEME TOKENS
+  # ─────────────────────────────────────────
+
+  mdc-theme-primary: "#1a90ff"                  # Slightly elevated iOS blue — pops through glass
+  mdc-theme-secondary: "#1a90ff"
+  mdc-theme-background: "#07070c"
+  mdc-theme-surface: "rgba(255, 255, 255, 0.05)"
+  mdc-theme-on-primary: "#ffffff"
+  mdc-theme-on-secondary: "#ffffff"
+  mdc-theme-on-surface: "#f2f2f7"
+  mdc-theme-error: "#ff453a"
+  mdc-theme-text-primary-on-background: "#f2f2f7"
+  mdc-theme-text-secondary-on-background: "rgba(235, 235, 245, 0.60)"
+  mdc-theme-text-hint-on-background: "rgba(235, 235, 245, 0.30)"
+  mdc-theme-text-icon-on-background: "rgba(235, 235, 245, 0.60)"
+  mdc-theme-text-disabled-on-light: "rgba(235, 235, 245, 0.30)"
+  mdc-theme-text-disabled-on-background: "rgba(235, 235, 245, 0.18)"
+
+  # ─────────────────────────────────────────
+  # MATERIAL TOKENS
+  # ─────────────────────────────────────────
+
+  material-primary-color: "#1a90ff"
+  material-primary-contrast-color: "#ffffff"
+  material-background-color: "#07070c"
+  material-secondary-background-color: "rgba(255, 255, 255, 0.05)"
+  material-body-text-color: "#f2f2f7"
+  material-disabled-text-color: "rgba(235, 235, 245, 0.30)"
+  material-error-text-color: "#ff453a"
+  material-primary-text-color: "#1a90ff"
+  material-secondary-text-color: "rgba(235, 235, 245, 0.60)"
+  material-disabled-color: "rgba(255, 255, 255, 0.10)"
+  material-divider-color: "rgba(255, 255, 255, 0.06)"
+  material-error-color: "#ff453a"
+
+  ha-color-form-background: "rgba(255, 255, 255, 0.05)"
+  ha-color-form-background-hover: "rgba(255, 255, 255, 0.09)"
+
+  # ─────────────────────────────────────────
+  # MDC DIALOG
+  # ─────────────────────────────────────────
+
+  mdc-dialog-content-ink-color: "#f2f2f7"
+  mdc-dialog-heading-ink-color: "#f2f2f7"
+  mdc-dialog-scroll-divider-color: "rgba(255, 255, 255, 0.06)"
+
+  # ─────────────────────────────────────────
+  # MDC BUTTON, CHECKBOX & RADIO
+  # ─────────────────────────────────────────
+
+  mdc-button-disabled-ink-color: "rgba(235, 235, 245, 0.30)"
+  mdc-button-outline-color: "rgba(255, 255, 255, 0.14)"
+
+  mdc-checkbox-disabled-color: "rgba(235, 235, 245, 0.30)"
+  mdc-checkbox-unchecked-color: "rgba(235, 235, 245, 0.50)"
+  mdc-radio-disabled-color: "rgba(235, 235, 245, 0.30)"
+  mdc-radio-unchecked-color: "rgba(235, 235, 245, 0.50)"
+
+  # ─────────────────────────────────────────
+  # MDC TAB
+  # ─────────────────────────────────────────
+
+  mdc-tab-text-label-color-default: "#f2f2f7"
+
+  # ─────────────────────────────────────────
+  # ACCENT COLOURS — iOS Tahoe Blue (elevated)
+  # The glass makes colours appear more vivid
+  # so we use a slightly brighter blue that
+  # reads cleanly through the translucent layer
+  # ─────────────────────────────────────────
+
+  primary-color: "#1a90ff"                      # Elevated iOS blue — glows through glass
+  accent-color: "#1a90ff"
+  light-primary-color: "#4dabff"
+  dark-primary-color: "#0066d6"
+
+  # ─────────────────────────────────────────
+  # TEXT COLOURS
+  # ─────────────────────────────────────────
+
+  primary-text-color: "#f2f2f7"
+  secondary-text-color: "rgba(235, 235, 245, 0.60)"
+  disabled-text-color: "rgba(235, 235, 245, 0.28)"
+  text-primary-color: "#f2f2f7"
+  text-accent-color: "#ffffff"
+  text-light-primary-color: "#07070c"
+
+  # ─────────────────────────────────────────
+  # SIDEBAR — Glass panel
+  # A dark, frosted glass navigation rail
+  # ─────────────────────────────────────────
+
+  sidebar-background-color: "rgba(8, 8, 16, 0.72)"
+  sidebar-selected-background-color: "rgba(26, 144, 255, 0.16)"
+  sidebar-text-color: "#f2f2f7"
+  sidebar-selected-text-color: "#1a90ff"
+  sidebar-icon-color: "rgba(235, 235, 245, 0.55)"
+  sidebar-selected-icon-color: "#1a90ff"
+
+  # ─────────────────────────────────────────
+  # HEADER / TOOLBAR — Floating glass bar
+  # ─────────────────────────────────────────
+
+  app-header-background-color: "rgba(7, 7, 12, 0.70)"
+  app-header-text-color: "#f2f2f7"
+  app-header-edit-text-color: "#f2f2f7"
+  app-header-edit-background-color: "rgba(255, 255, 255, 0.06)"
+
+  # ─────────────────────────────────────────
+  # STATE COLOURS — iOS system palette
+  # ─────────────────────────────────────────
+
+  state-on-color: "#1a90ff"                     # Active — vivid blue through glass
+  state-off-color: "#2c2c36"                    # Off — dark slate (cooler for glass theme)
+  state-unavailable-color: "rgba(235, 235, 245, 0.16)"
+  state-icon-color: "rgba(235, 235, 245, 0.55)"
+  state-on-icon-color: "#1a90ff"
+
+  # ─────────────────────────────────────────
+  # ENTITY STATE PILLS / LABEL BADGES
+  # ─────────────────────────────────────────
+
+  label-badge-background-color: "rgba(255, 255, 255, 0.06)"
+  label-badge-text-color: "#f2f2f7"
+  label-badge-red: "#ff453a"
+  label-badge-blue: "#1a90ff"
+  label-badge-green: "#30d158"
+  label-badge-yellow: "#ffd60a"
+  label-badge-grey: "#48484f"
+
+  # ─────────────────────────────────────────
+  # SEMANTIC / SYSTEM COLOURS
+  # ─────────────────────────────────────────
+
+  error-color: "#ff453a"
+  warning-color: "#ffd60a"
+  success-color: "#30d158"
+  info-color: "#64d2ff"
+
+  # ─────────────────────────────────────────
+  # SWITCHES & TOGGLES
+  # ─────────────────────────────────────────
+
+  switch-checked-color: "#1a90ff"
+  switch-checked-button-color: "#ffffff"
+  switch-checked-track-color: "#1a90ff"
+  switch-unchecked-button-color: "#58585e"
+  switch-unchecked-track-color: "#2c2c36"
+
+  # ─────────────────────────────────────────
+  # SLIDERS
+  # ─────────────────────────────────────────
+
+  paper-slider-knob-color: "#ffffff"
+  paper-slider-knob-start-color: "#ffffff"
+  paper-slider-active-color: "#1a90ff"
+  paper-slider-pin-color: "#1a90ff"
+  paper-slider-secondary-color: "rgba(26, 144, 255, 0.28)"
+
+  # ─────────────────────────────────────────
+  # INPUTS & FORMS — Glass fields
+  # Inputs are glass panes: nearly clear with
+  # a bright focus ring that glows blue
+  # ─────────────────────────────────────────
+
+  mdc-theme-surface: "rgba(255, 255, 255, 0.05)"
+  mdc-theme-on-surface: "#f2f2f7"
+
+  # MDC text fields (glass fill)
+  mdc-text-field-fill-color: "rgba(255, 255, 255, 0.06)"
+  mdc-text-field-ink-color: "#f2f2f7"
+  mdc-text-field-label-ink-color: "rgba(235, 235, 245, 0.55)"
+  mdc-text-field-idle-line-color: "rgba(255, 255, 255, 0.16)"
+  mdc-text-field-hover-line-color: "rgba(255, 255, 255, 0.35)"
+  mdc-text-field-outlined-idle-border-color: "rgba(255, 255, 255, 0.16)"
+  mdc-text-field-outlined-hover-border-color: "rgba(255, 255, 255, 0.32)"
+  mdc-text-field-disabled-fill-color: "rgba(255, 255, 255, 0.03)"
+  mdc-text-field-disabled-ink-color: "rgba(235, 235, 245, 0.28)"
+  mdc-text-field-disabled-line-color: "rgba(255, 255, 255, 0.05)"
+
+  # MDC select / dropdown (glass)
+  mdc-select-fill-color: "rgba(255, 255, 255, 0.06)"
+  mdc-select-ink-color: "#f2f2f7"
+  mdc-select-label-ink-color: "rgba(235, 235, 245, 0.55)"
+  mdc-select-idle-line-color: "rgba(255, 255, 255, 0.16)"
+  mdc-select-hover-line-color: "rgba(255, 255, 255, 0.35)"
+  mdc-select-outlined-idle-border-color: "rgba(255, 255, 255, 0.16)"
+  mdc-select-outlined-hover-border-color: "rgba(255, 255, 255, 0.32)"
+  mdc-select-dropdown-icon-color: "rgba(235, 235, 245, 0.55)"
+  mdc-select-focused-dropdown-icon-color: "#1a90ff"
+  mdc-select-disabled-fill-color: "rgba(255, 255, 255, 0.03)"
+  mdc-select-disabled-ink-color: "rgba(235, 235, 245, 0.28)"
+  mdc-menu-surface-fill-color: "rgba(18, 18, 26, 0.92)"
+
+  # HA input-* properties
+  input-fill-color: "rgba(255, 255, 255, 0.06)"
+  input-ink-color: "#f2f2f7"
+  input-label-ink-color: "rgba(235, 235, 245, 0.55)"
+  input-dropdown-icon-color: "rgba(235, 235, 245, 0.55)"
+  input-idle-line-color: "rgba(255, 255, 255, 0.16)"
+  input-hover-line-color: "#1a90ff"
+  input-outlined-idle-border-color: "rgba(255, 255, 255, 0.16)"
+  input-outlined-hover-border-color: "rgba(255, 255, 255, 0.32)"
+  input-outlined-disabled-border-color: "rgba(235, 235, 245, 0.20)"
+  input-disabled-fill-color: "rgba(255, 255, 255, 0.03)"
+  input-disabled-ink-color: "rgba(235, 235, 245, 0.28)"
+  input-disabled-line-color: "rgba(255, 255, 255, 0.05)"
+  input-disabled-label-ink-color: "rgba(235, 235, 245, 0.28)"
+
+  # Legacy paper-input (glass style)
+  paper-input-container-color: "rgba(255, 255, 255, 0.10)"
+  paper-input-container-focus-color: "#1a90ff"
+  paper-input-container-label-color: "rgba(235, 235, 245, 0.55)"
+  paper-input-container-label-floating-color: "#1a90ff"
+  paper-input-container-input-color: "#f2f2f7"
+  paper-input-container-invalid-color: "#ff453a"
+
+  # ─────────────────────────────────────────
+  # MATERIAL WEB (MD3) — Filled text fields
+  # ─────────────────────────────────────────
+
+  md-filled-text-field-container-color: "rgba(255, 255, 255, 0.06)"
+  md-filled-text-field-input-text-color: "#f2f2f7"
+  md-filled-text-field-label-text-color: "rgba(235, 235, 245, 0.55)"
+  md-filled-text-field-focus-label-text-color: "#1a90ff"
+  md-filled-text-field-active-indicator-color: "rgba(255, 255, 255, 0.14)"
+  md-filled-text-field-hover-active-indicator-color: "rgba(255, 255, 255, 0.28)"
+  md-filled-text-field-focus-active-indicator-color: "#1a90ff"
+  md-filled-text-field-caret-color: "#1a90ff"
+  md-filled-text-field-error-active-indicator-color: "#ff453a"
+  md-filled-text-field-error-focus-active-indicator-color: "#ff453a"
+  md-filled-text-field-error-label-text-color: "#ff453a"
+  md-filled-text-field-disabled-container-color: "rgba(255, 255, 255, 0.03)"
+  md-filled-text-field-disabled-input-text-color: "rgba(235, 235, 245, 0.28)"
+  md-filled-text-field-disabled-label-text-color: "rgba(235, 235, 245, 0.28)"
+
+  # Outlined text fields
+  md-outlined-text-field-input-text-color: "#f2f2f7"
+  md-outlined-text-field-label-text-color: "rgba(235, 235, 245, 0.55)"
+  md-outlined-text-field-focus-label-text-color: "#1a90ff"
+  md-outlined-text-field-outline-color: "rgba(255, 255, 255, 0.14)"
+  md-outlined-text-field-hover-outline-color: "rgba(255, 255, 255, 0.28)"
+  md-outlined-text-field-focus-outline-color: "#1a90ff"
+  md-outlined-text-field-caret-color: "#1a90ff"
+  md-outlined-text-field-error-outline-color: "#ff453a"
+  md-outlined-text-field-disabled-input-text-color: "rgba(235, 235, 245, 0.28)"
+  md-outlined-text-field-disabled-label-text-color: "rgba(235, 235, 245, 0.28)"
+  md-outlined-text-field-disabled-outline-color: "rgba(255, 255, 255, 0.05)"
+
+  # Filled select (dropdown)
+  md-filled-select-text-field-container-color: "rgba(255, 255, 255, 0.06)"
+  md-filled-select-text-field-input-text-color: "#f2f2f7"
+  md-filled-select-text-field-label-text-color: "rgba(235, 235, 245, 0.55)"
+  md-filled-select-text-field-focus-label-text-color: "#1a90ff"
+  md-filled-select-text-field-active-indicator-color: "rgba(255, 255, 255, 0.14)"
+  md-filled-select-text-field-hover-active-indicator-color: "rgba(255, 255, 255, 0.28)"
+  md-filled-select-text-field-focus-active-indicator-color: "#1a90ff"
+
+  # Outlined select (dropdown)
+  md-outlined-select-text-field-input-text-color: "#f2f2f7"
+  md-outlined-select-text-field-label-text-color: "rgba(235, 235, 245, 0.55)"
+  md-outlined-select-text-field-outline-color: "rgba(255, 255, 255, 0.14)"
+  md-outlined-select-text-field-hover-outline-color: "rgba(255, 255, 255, 0.28)"
+  md-outlined-select-text-field-focus-outline-color: "#1a90ff"
+
+  # MD3 menu / list surface (glass dropdown)
+  md-menu-container-color: "rgba(18, 18, 26, 0.92)"
+  md-list-container-color: "rgba(18, 18, 26, 0.92)"
+  md-list-item-label-text-color: "#f2f2f7"
+  md-list-item-supporting-text-color: "rgba(235, 235, 245, 0.60)"
+
+  # ─────────────────────────────────────────
+  # CHECKBOXES & RADIO
+  # ─────────────────────────────────────────
+
+  paper-checkbox-checked-color: "#1a90ff"
+  paper-checkbox-unchecked-color: "rgba(235, 235, 245, 0.28)"
+  paper-checkbox-label-color: "#f2f2f7"
+  paper-radio-button-checked-color: "#1a90ff"
+  paper-radio-button-unchecked-color: "rgba(235, 235, 245, 0.28)"
+
+  # ─────────────────────────────────────────
+  # RIPPLE / INTERACTION
+  # ─────────────────────────────────────────
+
+  paper-ripple-opacity: "0.12"
+
+  # ─────────────────────────────────────────
+  # SCROLLBAR (webkit)
+  # ─────────────────────────────────────────
+
+  scrollbar-thumb-color: "rgba(255, 255, 255, 0.14)"
+
+  # ─────────────────────────────────────────
+  # LOVELACE DASHBOARD
+  # ─────────────────────────────────────────
+
+  masonry-view-transition-duration: "350ms"
+
+  # ─────────────────────────────────────────
+  # MAP
+  # ─────────────────────────────────────────
+
+  ha-map-filter: "invert(0.9) hue-rotate(180deg) brightness(0.82) contrast(1.15)"
+
+  # ─────────────────────────────────────────
+  # CHIPS / BADGES — Glass pill style
+  # ─────────────────────────────────────────
+
+  chip-background-color: "rgba(255, 255, 255, 0.08)"
+  chip-border-radius: "999px"
+
+  # ─────────────────────────────────────────
+  # CODE EDITOR — Dark glass IDE palette
+  # ─────────────────────────────────────────
+
+  code-editor-background-color: "#07070c"
+  codemirror-background: "#07070c"
+  codemirror-default-color: "#f2f2f7"
+  codemirror-keyword-color: "#ff7eb6"
+  codemirror-atom-color: "#ff9f0a"
+  codemirror-number-color: "#64d2ff"
+  codemirror-def-color: "#1a90ff"
+  codemirror-variable-color: "#f2f2f7"
+  codemirror-operator-color: "#ff453a"
+  codemirror-comment-color: "#48484f"
+  codemirror-string-color: "#30d158"
+  codemirror-meta-color: "#bf5af2"
+  codemirror-qualifier-color: "#ff9f0a"
+  codemirror-builtin-color: "#64d2ff"
+  codemirror-tag-color: "#ff453a"
+  codemirror-attribute-color: "#ffd60a"
+  codemirror-callee-color: "#1a90ff"
+  codemirror-property-color: "#bf5af2"
+  codemirror-cursor-color: "#1a90ff"
+  codemirror-selected-color: "rgba(26, 144, 255, 0.22)"
+
+  # ─────────────────────────────────────────
+  # ENERGY DASHBOARD
+  # ─────────────────────────────────────────
+
+  energy-grid-consumption-color: "#1a90ff"
+  energy-grid-return-color: "#30d158"
+  energy-solar-color: "#ffd60a"
+  energy-non-fossil-color: "#30d158"
+  energy-battery-in-color: "#64d2ff"
+  energy-battery-out-color: "#bf5af2"
+  energy-gas-color: "#ff9f0a"
