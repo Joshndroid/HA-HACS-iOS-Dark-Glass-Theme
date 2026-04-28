@@ -139,16 +139,19 @@ ios_tahoe_dark_glass:
     inset 0 1px 0 rgba(255, 255, 255, 0.12)
 
   # ─────────────────────────────────────────
-  # FROSTED ELEVATED SURFACES
-  # Dialogs, menus, select dropdowns —
-  # slightly more opaque glass (thicker pane)
+  # ELEVATED SOLID SURFACES
+  # Dialogs, edit panels, menus, dropdowns —
+  # these must be fully opaque so the UI is
+  # readable. Glass is reserved for dashboard
+  # cards only; edit/config surfaces are solid
+  # dark to prevent content bleed-through.
   # ─────────────────────────────────────────
 
-  paper-dialog-background-color: "rgba(22, 22, 30, 0.90)"
-  paper-listbox-background-color: "rgba(15, 15, 20, 0.85)"
+  paper-dialog-background-color: "#15151e"          # Solid — edit dialogs must be readable
+  paper-listbox-background-color: "#111118"          # Solid list surface
   paper-item-focused_-_background: "rgba(255, 255, 255, 0.07)"
   paper-item-focused_-_after_-_opacity: "0"
-  mdc-menu-surface-fill-color: "rgba(22, 22, 30, 0.92)"
+  mdc-menu-surface-fill-color: "#15151e"             # Solid dropdown/menu surface
   mdc-select-fill-color: "rgba(255, 255, 255, 0.06)"
   mdc-text-field-fill-color: "rgba(255, 255, 255, 0.06)"
 
@@ -159,7 +162,7 @@ ios_tahoe_dark_glass:
   mdc-theme-primary: "#1a90ff"                  # Slightly elevated iOS blue — pops through glass
   mdc-theme-secondary: "#1a90ff"
   mdc-theme-background: "#07070c"
-  mdc-theme-surface: "rgba(255, 255, 255, 0.05)"
+  mdc-theme-surface: "#15151e"                      # Solid — used inside dialogs/edit panels
   mdc-theme-on-primary: "#ffffff"
   mdc-theme-on-secondary: "#ffffff"
   mdc-theme-on-surface: "#f2f2f7"
@@ -188,8 +191,8 @@ ios_tahoe_dark_glass:
   material-divider-color: "rgba(255, 255, 255, 0.06)"
   material-error-color: "#ff453a"
 
-  ha-color-form-background: "rgba(255, 255, 255, 0.05)"
-  ha-color-form-background-hover: "rgba(255, 255, 255, 0.09)"
+  ha-color-form-background: "#15151e"               # Solid — form areas in edit dialogs
+  ha-color-form-background-hover: "#1e1e28"          # Solid hover state
 
   # ─────────────────────────────────────────
   # MDC DIALOG
@@ -259,7 +262,7 @@ ios_tahoe_dark_glass:
   app-header-background-color: "rgba(7, 7, 12, 0.70)"
   app-header-text-color: "#f2f2f7"
   app-header-edit-text-color: "#f2f2f7"
-  app-header-edit-background-color: "rgba(255, 255, 255, 0.06)"
+  app-header-edit-background-color: "#15151e"        # Solid — edit mode toolbar must be opaque
 
   # ─────────────────────────────────────────
   # STATE COLOURS — iOS system palette
@@ -318,7 +321,7 @@ ios_tahoe_dark_glass:
   # a bright focus ring that glows blue
   # ─────────────────────────────────────────
 
-  mdc-theme-surface: "rgba(255, 255, 255, 0.05)"
+  mdc-theme-surface: "#15151e"                      # Solid — keeps input containers readable
   mdc-theme-on-surface: "#f2f2f7"
 
   # MDC text fields (glass fill)
@@ -345,7 +348,7 @@ ios_tahoe_dark_glass:
   mdc-select-focused-dropdown-icon-color: "#1a90ff"
   mdc-select-disabled-fill-color: "rgba(255, 255, 255, 0.03)"
   mdc-select-disabled-ink-color: "rgba(235, 235, 245, 0.28)"
-  mdc-menu-surface-fill-color: "rgba(18, 18, 26, 0.92)"
+  mdc-menu-surface-fill-color: "#15151e"             # Solid — duplicate anchor for select menus
 
   # HA input-* properties
   input-fill-color: "rgba(255, 255, 255, 0.06)"
@@ -418,9 +421,9 @@ ios_tahoe_dark_glass:
   md-outlined-select-text-field-hover-outline-color: "rgba(255, 255, 255, 0.28)"
   md-outlined-select-text-field-focus-outline-color: "#1a90ff"
 
-  # MD3 menu / list surface (glass dropdown)
-  md-menu-container-color: "rgba(18, 18, 26, 0.92)"
-  md-list-container-color: "rgba(18, 18, 26, 0.92)"
+  # MD3 menu / list surface — solid (must be opaque in edit/select contexts)
+  md-menu-container-color: "#15151e"
+  md-list-container-color: "#15151e"
   md-list-item-label-text-color: "#f2f2f7"
   md-list-item-supporting-text-color: "rgba(235, 235, 245, 0.60)"
 
