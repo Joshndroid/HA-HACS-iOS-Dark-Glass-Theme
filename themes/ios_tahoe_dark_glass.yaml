@@ -114,15 +114,35 @@ ios_tahoe_dark_glass:
 
   # ─────────────────────────────────────────
   # GLASS SURFACES — Cards & panels
-  # The signature of iOS 26 Liquid Glass:
-  # surfaces are barely opaque, letting the
-  # dark void bleed through. Borders catch
-  # ambient light like real glass edges.
+  #
+  # HA uses ha-card-background and
+  # card-background-color for ALL card-like
+  # surfaces across the entire UI — dashboard
+  # cards, settings panels, card editors, the
+  # restart page, dialogs, etc. A transparent
+  # value here makes every context unreadable.
+  #
+  # The liquid glass aesthetic is therefore
+  # delivered through the BORDER + SHADOW
+  # system below (bright glass edge, inset
+  # specular highlight, deep ambient shadow)
+  # rather than fill transparency.
+  #
+  # For true backdrop-blur glass on dashboard
+  # cards only, add card-mod to your dashboard:
+  #   card_mod:
+  #     style: |
+  #       ha-card {
+  #         backdrop-filter: blur(24px) saturate(1.8);
+  #         -webkit-backdrop-filter: blur(24px) saturate(1.8);
+  #         background: rgba(255,255,255,0.05) !important;
+  #       }
   # ─────────────────────────────────────────
 
-  # Card glass surface — ultra-translucent
-  card-background-color: "rgba(255, 255, 255, 0.05)"
-  ha-card-background: "rgba(255, 255, 255, 0.05)"
+  # Card surface — solid dark glass tint
+  # (opaque so settings/editors remain usable)
+  card-background-color: "#13131c"
+  ha-card-background: "#13131c"
 
   # Glass edge — bright rim light (light refracting through glass)
   ha-card-border-color: "rgba(255, 255, 255, 0.18)"
@@ -132,11 +152,11 @@ ios_tahoe_dark_glass:
   ha-card-border-radius: "22px"
 
   # Shadow system: outer ambient glow + inset specular highlight
-  # The inset rgba(255,255,255,0.08) simulates light hitting the top glass edge
+  # The inset white simulates light hitting the top edge of a glass pane
   ha-card-box-shadow: >-
     0 8px 40px rgba(0, 0, 0, 0.65),
     0 2px 12px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12)
+    inset 0 1px 0 rgba(255, 255, 255, 0.10)
 
   # ─────────────────────────────────────────
   # ELEVATED SOLID SURFACES
@@ -181,7 +201,7 @@ ios_tahoe_dark_glass:
   material-primary-color: "#1a90ff"
   material-primary-contrast-color: "#ffffff"
   material-background-color: "#07070c"
-  material-secondary-background-color: "rgba(255, 255, 255, 0.05)"
+  material-secondary-background-color: "#15151e"    # Solid — used in settings/form section backgrounds
   material-body-text-color: "#f2f2f7"
   material-disabled-text-color: "rgba(235, 235, 245, 0.30)"
   material-error-text-color: "#ff453a"
